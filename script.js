@@ -1,4 +1,3 @@
-// script.js
 let isAdmin = false;
 
 function login() {
@@ -6,7 +5,7 @@ function login() {
     const password = document.getElementById('password')?.value;
     const errorEl = document.getElementById('login-error');
 
-    if (typeof CONFIG === 'undefined') {
+    if (!CONFIG) {
         if (errorEl) errorEl.textContent = 'خطا: config.js بارگذاری نشد!';
         if (errorEl) errorEl.style.display = 'block';
         return;
@@ -60,9 +59,7 @@ function uploadVideo() {
 
         fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 action: 'upload',
                 title: title,
@@ -94,16 +91,13 @@ function loadVideos(isAdminPage = false) {
     fetch(CONFIG.GOOGLE_SCRIPT_URL + '?action=list')
         .then(res => res.json())
         .then(videos => {
-            const container = isAdminPage
-                ? document.getElementById('video-list-admin')
-                : document.getElementById('video-list');
-
+            const container = isAdminPage ? document.getElementById('video-list-admin') : document.getElementById('video-list');
             if (!container) return;
             container.innerHTML = '';
 
             videos
                 .filter(v => v.status === 'active' || isAdminPage)
-                .forEach(video => {
+                .forEach((video, index) => {
                     const directUrl = getDirectUrl(video.url);
                     const div = document.createElement('div');
                     div.className = 'video-item';
@@ -115,6 +109,7 @@ function loadVideos(isAdminPage = false) {
                         </video>
                     `;
                     container.appendChild(div);
+                    setTimeout(() => div.classList.add('show'), index * 100);
                 });
         })
         .catch(err => console.error('خطا در بارگذاری ویدیوها:', err));
