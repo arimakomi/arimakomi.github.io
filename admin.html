@@ -2,33 +2,31 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>پنل ادمین</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
   <link rel="stylesheet" href="style.css">
   <script src="config.js"></script>
   <script src="script.js" defer></script>
 </head>
-<body dir="rtl">
-  <div class="container">
-    <h1>🛠 پنل ادمین</h1>
+<body>
+  <header>
+    <h1>🎬 مدیریت ویدیوها</h1>
+    <button onclick="logout()">خروج</button>
+  </header>
 
-    <!-- فرم ورود -->
-    <div id="login-form">
+  <main>
+    <section id="login-form">
       <h2>ورود مدیر</h2>
       <input type="text" id="username" placeholder="نام کاربری">
       <input type="password" id="password" placeholder="رمز عبور">
       <button onclick="login()">ورود</button>
-      <p id="login-error" style="color:red; display:none;"></p>
-    </div>
+      <p id="login-error" class="error"></p>
+    </section>
 
-    <!-- پنل آپلود -->
-    <div id="upload-panel" style="display:none;">
+    <section id="upload-panel" style="display:none;">
       <h2>آپلود ویدیو جدید</h2>
       <input type="text" id="title" placeholder="عنوان ویدیو">
-      <select id="genre">
-        <option value="عمومی">عمومی</option>
-        <option value="ورزشی">ورزشی</option>
-        <option value="فیلم">فیلم</option>
-      </select>
+      <input type="text" id="genre" placeholder="ژانر">
       <select id="status">
         <option value="active">فعال</option>
         <option value="inactive">غیرفعال</option>
@@ -37,12 +35,8 @@
       <button onclick="uploadVideo()">آپلود</button>
       <p id="upload-status"></p>
       <hr>
-      <button onclick="logout()">خروج</button>
-
-      <h2>لیست ویدیوها (ادمین)</h2>
       <div id="video-list-admin"></div>
-    </div>
-  </div>
-  <footer>© 2025 Arimakomi</footer>
+    </section>
+  </main>
 </body>
 </html>
