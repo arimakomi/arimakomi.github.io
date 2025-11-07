@@ -2,5 +2,5 @@
 const CONFIG = {
     ADMIN_USERNAME: "admin",
     ADMIN_PASSWORD: "starly2025",  // تغییر دهید
-    GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxqy-fZAbkD8YUuI3H9CG35MulWZlBon2VYN2uYBPinvchh1_l6qpJtebxQKFLl0U43/exec"
+    GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyAt4tT5XRQXLFAfyxlLLxsfJvGIQ7ji3-Yuw1OF8Nmm5uoKju88OzB3R8C6TlmILN6/exec"
 };
