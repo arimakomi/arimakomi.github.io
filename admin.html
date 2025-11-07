@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>پنل ادمین - استارلی مووی</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>پنل ادمین</h1>
+
+        <!-- فرم ورود -->
+        <div id="login-form">
+            <input type="text" id="username" placeholder="نام کاربری" /><br><br>
+            <input type="password" id="password" placeholder="رمز عبور" /><br><br>
+            <button onclick="login()">ورود</button>
+        </div>
+
+        <!-- پنل آپلود -->
+        <div id="upload-panel" style="display:none;">
+            <h2>آپلود ویدیو جدید</h2>
+            <input type="text" id="title" placeholder="عنوان ویدیو" required /><br><br>
+            <select id="genre">
+                <option value="اکشن">اکشن</option>
+                <option value="درام">درام</option>
+                <option value="کمدی">کمدی</option>
+                <option value="ترسناک">ترسناک</option>
+            </select><br><br>
+            <select id="status">
+                <option value="active">فعال</option>
+                <option value="inactive">غیرفعال</option>
+            </select><br><br>
+            <input type="file" id="video-file" accept="video/*" required /><br><br>
+            <button onclick="uploadVideo()">آپلود</button>
+            <p id="upload-status"></p>
+            <hr>
+            <button onclick="logout()">خروج</button>
+        </div>
+
+        <div id="video-list-admin"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        checkLogin();
+    </script>
+</body>
+</html>
