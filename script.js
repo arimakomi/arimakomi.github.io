@@ -56,11 +56,13 @@ function uploadVideo() {
     const reader = new FileReader();
     reader.onload = function(e) {
         const base64 = e.target.result.split(',')[1];
-        statusEl.innerHTML = 'در حال آپلود به Google Drive...';
+        statusEl.innerHTML = 'در حال آپلود...';
 
         fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',  // رفع Failed to fetch
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 action: 'upload',
                 title: title,
@@ -70,38 +72,53 @@ function uploadVideo() {
                 fileData: base64
             })
         })
-        .then(() => {
-            statusEl.innerHTML = '<span style="color:green;">آپلود موفق! در حال به‌روزرسانی...</span>';
-            setTimeout(() => {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                statusEl.innerHTML = '<span style="color:green;">آپلود موفق!</span>';
                 document.getElementById('title').value = '';
                 fileInput.value = '';
                 loadVideos(true);
-            }, 3000);
+            } else {
+                statusEl.innerHTML = `<span style="color:red;">خطا: ${data.error}</span>`;
+            }
         })
         .catch(err => {
-            statusEl.innerHTML = `<span style="color:red;">خطا: ${err.message}</span>`;
+            statusEl.innerHTML = `<span style="color:red;">خطا در ارتباط: ${err.message}</span>`;
         });
     };
     reader.readAsDataURL(file);
 }
 
 function loadVideos(isAdminPage = false) {
-    if (typeof CONFIG === 'undefined') return;
+    fetch(CONFIG.GOOGLE_SCRIPT_URL + '?action=list', {
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(videos => {
+        const container = isAdminPage ? document.getElementById('video-list-admin') : document.getElementById('video-list');
+        if (!container) return;
+        container.innerHTML = '';
 
-    fetch(CONFIG.GOOGLE_SCRIPT_URL + '?action=list', { mode: 'no-cors' })
-        .then(() => {
-            // با no-cors نمی‌توان پاسخ خواند → از cache یا reload
-            setTimeout(() => {
-                const container = isAdminPage ? document.getElementById('video-list-admin') : document.getElementById('video-list');
-                if (!container) return;
-                // فرض بر موفقیت → لیست را از Sheet نمی‌خوانیم، فقط reload
-                location.reload();
-            }, 2000);
-        })
-        .catch(() => {
-            // در صورت خطا، لیست را از cache یا reload
-            location.reload();
-        });
+        videos
+            .filter(v => v.status === 'active' || isAdminPage)
+            .forEach(video => {
+                const directUrl = getDirectUrl(video.url);
+                const div = document.createElement('div');
+                div.className = 'video-item';
+                div.innerHTML = `
+                    <h3>${video.title} <small>(${video.genre})</small></h3>
+                    ${isAdminPage ? `<p>وضعیت: ${video.status === 'active' ? 'فعال' : 'غیرفعال'}</p>` : ''}
+                    <video controls style="width:100%; max-width:600px;">
+                        <source src="${directUrl}" type="video/mp4">
+                    </video>
+                `;
+                container.appendChild(div);
+            });
+    })
+    .catch(err => {
+        console.error('خطا در بارگذاری ویدیوها:', err);
+    });
 }
 
 function getDirectUrl(driveUrl) {
