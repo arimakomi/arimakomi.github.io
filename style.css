@@ -1,42 +1,91 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-    font-family: Tahoma, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+  background-color: #f5f6fa;
+  color: #2f3640;
+  line-height: 1.6;
+  padding: 20px;
 }
-.container { max-width: 900px; margin: 0 auto; }
-h1 { color: #ff6b6b; margin-bottom: 10px; }
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #ff6b6b;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 10px;
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
 }
-input, select, button {
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 400px;
+
+/* Header */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e272e;
 }
+
+/* Buttons */
 button {
-    background: #4CAF50;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+  background-color: #00a8ff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
-button:hover { background: #45a049; }
+
+button:hover {
+  background-color: #0097e6;
+}
+
+/* Inputs & selects */
+input[type="text"], input[type="password"], input[type="file"], select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Error messages */
+#error, #login-error, #upload-status {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Video items */
 .video-item {
-    background: rgba(255,255,255,0.1);
-    margin: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: right;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
-video { width: 100%; max-width: 800px; border-radius: 8px; margin: 10px 0; }
+
+.video-item video {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Admin panel */
+#upload-panel, #video-list-admin {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #718093;
+}
