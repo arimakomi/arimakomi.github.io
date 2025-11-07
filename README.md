@@ -2,7 +2,6 @@
 
 ## ویژگی‌ها
 - پخش ویدیو با HTML5
-- پنل ادمین (نام کاربری: `admin` | رمز: `admin123`)
 - آپلود ویدیو + انتخاب ژانر و وضعیت
 - امنیت پخش با `VideoStream`
 
@@ -12,7 +11,7 @@
 3. فایل‌ها را روی سرور PHP آپلود کنید
 
 ## دمو استاتیک
-[دمو GitHub Pages](https://USERNAME.github.io/starly-movie-demo/)
+(https://arimakomi.github.io/starly-movie-demo/)
 
 ## لایسنس
 MIT
