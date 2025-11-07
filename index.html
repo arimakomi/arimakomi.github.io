@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>استارلی مووی - دمو</title>
-    <style>
-        body { font-family: Tahoma; background: #111; color: #fff; text-align: center; }
-        video { width: 80%; max-width: 800px; margin: 20px; border: 2px solid #ff6b6b; border-radius: 10px; }
-        .video-item { margin: 20px; }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>استارلی مووی</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>استارلی مووی</h1>
-    <p>دموی وب‌سایت پخش ویدیو</p>
-
-    <div class="video-item">
-        <h3>فیلم نمونه ۱ (اکشن)</h3>
-        <video controls>
-            <source src="videos/sample-action.mp4" type="video/mp4">
-        </video>
+    <div class="container">
+        <h1>استارلی مووی</h1>
+        <p>پخش ویدیوهای شما</p>
+        <div id="video-list"></div>
+        <br>
+        <a href="admin.html" class="btn">پنل ادمین</a>
     </div>
-
-    <div class="video-item">
-        <h3>فیلم نمونه ۲ (کمدی)</h3>
-        <video controls>
-            <source src="videos/sample-comedy.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <hr>
-    <p><small>این یک دموی استاتیک است. برای نسخه کامل PHP + MySQL، از سرور واقعی استفاده کنید.</small></p>
-    <p><a href="https://github.com/USERNAME/starly-movie" style="color:#ff6b6b;">مشاهده کد کامل در گیت‌هاب</a></p>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        loadVideos();
+    </script>
 </body>
 </html>
