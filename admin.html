@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>پنل ادمین - استارلی مووی</title>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,7 +14,8 @@
         <div id="login-form">
             <input type="text" id="username" placeholder="نام کاربری" /><br><br>
             <input type="password" id="password" placeholder="رمز عبور" /><br><br>
-            <button onclick="login()">ورود</button>
+            <button type="button" onclick="login()">ورود</button>
+            <p id="login-error" style="color:red; display:none;"></p>
         </div>
 
         <!-- پنل آپلود -->
@@ -31,10 +33,10 @@
                 <option value="inactive">غیرفعال</option>
             </select><br><br>
             <input type="file" id="video-file" accept="video/*" required /><br><br>
-            <button onclick="uploadVideo()">آپلود</button>
+            <button type="button" onclick="uploadVideo()">آپلود</button>
             <p id="upload-status"></p>
             <hr>
-            <button onclick="logout()">خروج</button>
+            <button type="button" onclick="logout()">خروج</button>
         </div>
 
         <div id="video-list-admin"></div>
@@ -43,7 +45,11 @@
     <script src="config.js"></script>
     <script src="script.js"></script>
     <script>
-        checkLogin();
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('upload-panel').style.display = 'block';
+            loadVideos(true);
+        }
     </script>
 </body>
 </html>
