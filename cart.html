@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starly Mini - Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Your Cart</h1>
+    <ul id="cartItems" class="mb-4"></ul>
+    <p class="text-xl font-semibold mb-4">Total: <span id="totalPrice">0</span> IRR</p>
+    <button id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded">Continue to Main Site</button>
+  </div>
+  <script type="module" src="cart.js"></script>
+</body>
+</html>
