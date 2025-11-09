@@ -1,3 +1,81 @@
+/* Body و فونت */
 body {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6; /* Tailwind bg-gray-100 */
+  margin: 0;
+}
+
+/* دسته‌بندی‌ها */
+#categories li {
+  transition: transform 0.2s, background-color 0.2s;
+}
+#categories li:hover {
+  transform: translateY(-2px);
+  background-color: #3b82f6; /* Tailwind blue-500 */
+  color: white;
+}
+
+/* کارت محصول */
+#products > div {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#products > div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* عکس محصول */
+#products img, #productDetails img {
+  border-radius: 0.5rem; /* rounded */
+  object-fit: cover;
+}
+
+/* دکمه‌ها */
+button {
+  transition: background-color 0.2s, transform 0.1s;
+}
+button:hover {
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(0);
+  opacity: 0.9;
+}
+
+/* Modal محصول */
+#productModal {
+  z-index: 1000;
+}
+#productModal div {
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+#productModal img {
+  max-height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* سبد خرید */
+#cartItems li {
+  margin-bottom: 0.5rem;
+}
+
+/* پاسخگو بودن صفحات */
+@media (max-width: 768px) {
+  #categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #products {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 480px) {
+  #categories {
+    grid-template-columns: 1fr;
+  }
+  #products {
+    grid-template-columns: 1fr;
+  }
 }
