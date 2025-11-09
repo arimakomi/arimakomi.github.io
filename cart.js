@@ -4,7 +4,7 @@ var checkoutBtn = document.getElementById("checkoutBtn");
 var cartCountEl = document.getElementById("cartCount");
 
 var cart = [];
-try{ var stored = localStorage.getItem("cart"); if(stored) cart = JSON.parse(stored); }catch(e){ console.error(e); }
+try{ var stored = localStorage.getItem("cart"); if(stored) cart = JSON.parse(stored);}catch(e){console.error(e);}
 if(cartCountEl) cartCountEl.textContent = cart.length;
 
 function renderCart(){
@@ -21,7 +21,7 @@ function renderCart(){
 
 renderCart();
 
-checkoutBtn.addEventListener("click", function(){
+checkoutBtn.addEventListener("click",function(){
   if(cart.length===0){ alert("Cart is empty"); return; }
   var productsParam = cart.map(function(p){ return p.id + ":1"; }).join(",");
   window.location.href = "https://starly.ir/cart?products=" + encodeURIComponent(productsParam);
