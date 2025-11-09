@@ -4,24 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Starly Mini - Products</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-50">
-    <h1 class="text-2xl font-bold">Starly Mini</h1>
-    <nav>
-      <a href="index.html" class="text-blue-600 hover:underline ml-4">Categories</a>
-      <a href="cart.html" class="text-blue-600 hover:underline ml-4">Cart (<span id="cartCount">0</span>)</a>
-    </nav>
-  </header>
+<header>
+  <h1>Starly Mini</h1>
+  <nav>
+    <a href="index.html">Categories</a>
+    <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+  </nav>
+</header>
 
-  <main class="container mx-auto px-6 py-6">
-    <h2 id="categoryTitle" class="text-3xl font-bold mb-6"></h2>
-    <div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-  </main>
+<main>
+  <h2 id="categoryTitle"></h2>
+  <div id="products" class="grid"></div>
+</main>
 
-  <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
