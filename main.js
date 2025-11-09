@@ -1,14 +1,16 @@
 const API = "https://starly.webi-artin.workers.dev";
+
+// المان‌ها
 const categoriesEl = document.getElementById("categories");
 const productsEl = document.getElementById("products");
 const categoryTitle = document.getElementById("categoryTitle");
 const cartCountEl = document.getElementById("cartCount");
 
-let allProducts = [];
+// Cart
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-cartCountEl?.textContent = cart.length;
+if (cartCountEl) cartCountEl.textContent = cart.length;
 
-// Load categories
+// --- بارگذاری دسته‌ها ---
 if (categoriesEl) {
   fetch(`${API}/categories`)
     .then(res => res.json())
@@ -17,37 +19,42 @@ if (categoriesEl) {
       categoriesEl.innerHTML = cats.map(c => `
         <div class="bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition">
           <img src="${c.image || 'https://via.placeholder.com/300'}" class="h-40 w-full object-cover">
-          <div class="p-3">
-            <h3 class="font-bold text-lg text-center">${c.name}</h3>
-          </div>
+          <h3>${c.name}</h3>
         </div>
       `).join("");
 
-      // Add click listener to each category card
+      // اضافه کردن event listener به کارت‌ها
       const cards = categoriesEl.querySelectorAll("div");
       cards.forEach((card, i) => {
         card.addEventListener("click", () => {
           window.location.href = `category.html?category=${cats[i].id}`;
         });
       });
-    });
+    })
+    .catch(err => console.error("Error loading categories:", err));
 }
 
-// Load products for category
+// --- بارگذاری محصولات دسته ---
 const urlParams = new URLSearchParams(window.location.search);
 const categoryId = urlParams.get("category");
+
 if (productsEl && categoryId) {
   fetch(`${API}/products`)
     .then(res => res.json())
     .then(data => {
-      allProducts = data.data || [];
+      const allProducts = data.data || [];
       const filtered = allProducts.filter(p => p.categories.includes(Number(categoryId)));
-      categoryTitle.textContent = filtered[0]?.categories_names?.find(c => c.id == categoryId)?.name || "Products";
 
+      // عنوان دسته
+      const catName = filtered[0]?.categories_names?.find(c => c.id == categoryId)?.name || "Products";
+      categoryTitle.textContent = catName;
+
+      // رندر محصولات
       productsEl.innerHTML = filtered.map(p => {
-        let priceText = p.type === "variable" ? 
+        const priceText = p.type === "variable" ?
           `${p.price_min} – ${p.price_max} ${p.currency || "IRR"}` :
           `${p.price} ${p.currency || "IRR"}`;
+
         return `
           <div class="bg-white rounded shadow p-4 flex flex-col hover:shadow-lg transition">
             <img src="${p.image}" alt="${p.name}" class="h-40 object-cover mb-2 rounded cursor-pointer">
@@ -60,13 +67,14 @@ if (productsEl && categoryId) {
           </div>
         `;
       }).join("");
-    });
+    })
+    .catch(err => console.error("Error loading products:", err));
 }
 
-// Add to cart
+// --- تابع افزودن به سبد ---
 window.addToCart = (id, name, price) => {
   cart.push({id, name, price});
   localStorage.setItem("cart", JSON.stringify(cart));
-  cartCountEl.textContent = cart.length;
+  if (cartCountEl) cartCountEl.textContent = cart.length;
   alert(`${name} added to cart`);
 }
