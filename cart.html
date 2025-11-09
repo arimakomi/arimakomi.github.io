@@ -8,12 +8,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
-  <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">Your Cart</h1>
+
+  <!-- Header / Menu -->
+  <header class="bg-white shadow p-4 mb-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Starly Mini</h1>
+    <nav class="space-x-4">
+      <a href="index.html" class="text-blue-600 hover:underline">Categories</a>
+      <a href="cart.html" class="text-blue-600 hover:underline" id="cartLink">Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6">Your Cart</h2>
     <ul id="cartItems" class="mb-4"></ul>
     <p class="text-xl font-semibold mb-4">Total: <span id="totalPrice">0</span> IRR</p>
-    <button id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded">Continue to Main Site</button>
-  </div>
+    <button id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Continue to Main Site</button>
+  </main>
+
   <script type="module" src="cart.js"></script>
 </body>
 </html>
