@@ -3,16 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starly Mini - Categories</title>
+  <title>Starly Mini</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
-  <div class="container mx-auto p-6">
-    <h1 class="text-4xl font-bold mb-6 text-center">Starly Mini</h1>
-    <h2 class="text-2xl font-semibold mb-4">Categories</h2>
-    <ul id="categories" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></ul>
-  </div>
+
+  <!-- Header / Menu -->
+  <header class="bg-white shadow p-4 mb-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Starly Mini</h1>
+    <nav class="space-x-4">
+      <a href="index.html" class="text-blue-600 hover:underline">Categories</a>
+      <a href="cart.html" class="text-blue-600 hover:underline" id="cartLink">Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <!-- Categories Grid -->
+  <main class="container mx-auto px-6">
+    <div id="categories" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </main>
+
   <script type="module" src="main.js"></script>
 </body>
 </html>
