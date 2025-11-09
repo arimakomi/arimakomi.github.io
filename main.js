@@ -1,17 +1,15 @@
 var API = "https://starly.webi-artin.workers.dev";
 
-// المان‌ها
 var categoriesEl = document.getElementById("categories");
 var productsEl = document.getElementById("products");
 var categoryTitle = document.getElementById("categoryTitle");
 var cartCountEl = document.getElementById("cartCount");
 
-// سبد خرید
 var cart = [];
-try{ var stored = localStorage.getItem("cart"); if(stored) cart = JSON.parse(stored); }catch(e){ console.error(e);}
+try{ var stored = localStorage.getItem("cart"); if(stored) cart = JSON.parse(stored);}catch(e){console.error(e);}
 if(cartCountEl) cartCountEl.textContent = cart.length;
 
-// --- دسته‌بندی‌ها ---
+// دسته‌ها
 if(categoriesEl){
   fetch(API + "/categories")
     .then(function(res){ return res.json(); })
@@ -33,7 +31,7 @@ if(categoriesEl){
     .catch(function(err){ console.error(err); });
 }
 
-// --- محصولات دسته ---
+// محصولات دسته
 var urlParams = new URLSearchParams(window.location.search);
 var categoryId = urlParams.get("category");
 
@@ -64,7 +62,7 @@ if(productsEl && categoryId){
           var btn = document.createElement("button");
           btn.textContent = "Add to Cart";
           btn.addEventListener("click", function(){
-            addToCart(p.id, p.name, p.price_min || p.price);
+            addToCart(p.id,p.name,p.price_min||p.price);
           });
           div.appendChild(btn);
           productsEl.appendChild(div);
@@ -74,10 +72,9 @@ if(productsEl && categoryId){
     .catch(function(err){ console.error(err); });
 }
 
-// --- افزودن به سبد ---
 function addToCart(id,name,price){
   cart.push({id:id,name:name,price:price});
-  try{ localStorage.setItem("cart", JSON.stringify(cart)); }catch(e){console.error(e);}
+  try{ localStorage.setItem("cart",JSON.stringify(cart)); }catch(e){console.error(e);}
   if(cartCountEl) cartCountEl.textContent = cart.length;
   alert(name + " added to cart");
 }
