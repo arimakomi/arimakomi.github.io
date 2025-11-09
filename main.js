@@ -8,13 +8,10 @@ var cartCountEl = document.getElementById("cartCount");
 
 // سبد خرید
 var cart = [];
-try {
-  var storedCart = localStorage.getItem("cart");
-  if(storedCart) cart = JSON.parse(storedCart);
-} catch(e) { console.error(e); }
+try{ var stored = localStorage.getItem("cart"); if(stored) cart = JSON.parse(stored); }catch(e){ console.error(e);}
 if(cartCountEl) cartCountEl.textContent = cart.length;
 
-// --- دسته‌ها ---
+// --- دسته‌بندی‌ها ---
 if(categoriesEl){
   fetch(API + "/categories")
     .then(function(res){ return res.json(); })
@@ -24,9 +21,8 @@ if(categoriesEl){
       for(var i=0;i<cats.length;i++){
         (function(c){
           var div = document.createElement("div");
-          div.className = "bg-white rounded shadow overflow-hidden cursor-pointer hover:shadow-lg transition";
-          div.innerHTML = '<img src="'+(c.image||'https://via.placeholder.com/300')+'" class="h-40 w-full object-cover">' +
-                          '<h3>'+c.name+'</h3>';
+          div.className = "card";
+          div.textContent = c.name;
           div.addEventListener("click", function(){
             window.location.href = "category.html?category=" + c.id;
           });
@@ -61,15 +57,16 @@ if(productsEl && categoryId){
       for(var k=0;k<filtered.length;k++){
         (function(p){
           var div = document.createElement("div");
-          div.className = "bg-white rounded shadow p-4 flex flex-col hover:shadow-lg transition";
+          div.className = "card";
           var priceText = p.type==="variable"? (p.price_min + " – " + p.price_max + " IRR") : (p.price + " IRR");
-          div.innerHTML = '<img src="'+p.image+'" alt="'+p.name+'" class="h-40 object-cover mb-2 rounded cursor-pointer">' +
-                          '<h3 class="font-bold text-lg mb-1">'+p.name+'</h3>' +
-                          '<p class="mb-2 text-gray-700">'+priceText+'</p>' +
-                          '<button class="bg-blue-500 text-white px-3 py-1 mt-auto rounded hover:bg-blue-600">Add to Cart</button>';
-          div.querySelector("button").addEventListener("click", function(){
+          div.textContent = p.name + " - " + priceText;
+
+          var btn = document.createElement("button");
+          btn.textContent = "Add to Cart";
+          btn.addEventListener("click", function(){
             addToCart(p.id, p.name, p.price_min || p.price);
           });
+          div.appendChild(btn);
           productsEl.appendChild(div);
         })(filtered[k]);
       }
@@ -80,9 +77,7 @@ if(productsEl && categoryId){
 // --- افزودن به سبد ---
 function addToCart(id,name,price){
   cart.push({id:id,name:name,price:price});
-  try{
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }catch(e){ console.error(e); }
+  try{ localStorage.setItem("cart", JSON.stringify(cart)); }catch(e){console.error(e);}
   if(cartCountEl) cartCountEl.textContent = cart.length;
   alert(name + " added to cart");
 }
