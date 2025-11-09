@@ -1,94 +1,49 @@
-/* فونت و body */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f9fafb;
   margin: 0;
 }
 
-/* منوی بالای سایت */
+/* منوی بالای سایت وسط چین */
 header {
+  background: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-header h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 header nav a {
-  margin-left: 1rem;
+  margin: 0 1.5rem;
   font-weight: 500;
   color: #3b82f6;
-  transition: all 0.2s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 header nav a:hover {
   color: #6366f1;
   text-decoration: underline;
 }
 
-/* کارت دسته‌بندی */
-#categories div {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-#categories div:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-#categories div img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-#categories div h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg,transparent,rgba(0,0,0,0.6));
-  color: white;
-  padding: 1rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* کارت محصول */
-#products > div {
+/* کارت‌ها بدون عکس */
+.card {
   background: white;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
 }
-#products > div:hover {
+.card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
-#products img {
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  object-fit: cover;
-  height: 180px;
-}
-#products h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0.5rem 0;
-}
-#products p {
-  font-size: 0.95rem;
-  color: #374151;
-}
 
-/* دکمه gradient */
+/* دکمه‌ها */
 button {
   background: linear-gradient(90deg,#6366f1,#3b82f6);
   color: white;
@@ -97,6 +52,7 @@ button {
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
+  margin-top: 0.5rem;
   transition: all 0.2s ease;
 }
 button:hover {
@@ -114,13 +70,6 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-#cartItems li img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  margin-right: 0.5rem;
 }
 #totalPrice {
   font-weight: 700;
