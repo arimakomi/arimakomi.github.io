@@ -1,54 +1,135 @@
+/* فونت و body */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
 }
 
+/* منوی بالای سایت */
 header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+header nav a {
+  margin-left: 1rem;
+  font-weight: 500;
+  color: #3b82f6;
+  transition: all 0.2s ease;
+}
+header nav a:hover {
+  color: #6366f1;
+  text-decoration: underline;
 }
 
-/* کارت دسته‌ها */
+/* کارت دسته‌بندی */
 #categories div {
-  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 #categories div:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+#categories div img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+#categories div h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg,transparent,rgba(0,0,0,0.6));
+  color: white;
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
 }
 
-/* کارت محصولات */
+/* کارت محصول */
 #products > div {
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 #products > div:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+#products img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  height: 180px;
+}
+#products h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+#products p {
+  font-size: 0.95rem;
+  color: #374151;
 }
 
+/* دکمه gradient */
 button {
-  transition: background-color 0.2s, transform 0.1s;
+  background: linear-gradient(90deg,#6366f1,#3b82f6);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 button:hover {
-  transform: translateY(-1px);
-}
-button:active {
-  transform: translateY(0);
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* عکس‌ها */
-#products img, #categories img {
-  border-radius: 0.5rem;
+/* سبد خرید */
+#cartItems li {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#cartItems li img {
+  width: 50px;
+  height: 50px;
   object-fit: cover;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+}
+#totalPrice {
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  #categories {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  #products {
+  #categories, #products {
     grid-template-columns: repeat(2, 1fr);
   }
 }
