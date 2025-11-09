@@ -8,10 +8,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
-  <div class="container mx-auto p-6">
-    <h1 id="categoryTitle" class="text-3xl font-bold mb-6"></h1>
-    <div id="products" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-  </div>
+
+  <!-- Header / Menu -->
+  <header class="bg-white shadow p-4 mb-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Starly Mini</h1>
+    <nav class="space-x-4">
+      <a href="index.html" class="text-blue-600 hover:underline">Categories</a>
+      <a href="cart.html" class="text-blue-600 hover:underline" id="cartLink">Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  <!-- Category Title -->
+  <main class="container mx-auto px-6">
+    <h2 id="categoryTitle" class="text-3xl font-bold mb-6"></h2>
+    <div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </main>
+
   <script type="module" src="main.js"></script>
 </body>
 </html>
